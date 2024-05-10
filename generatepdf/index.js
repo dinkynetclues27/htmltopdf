@@ -91,15 +91,15 @@ async function sendEmail(pdfBuffer) {
     let transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: "dinkyjani27@gmail.com", 
-        pass: "ccqf nslr ojkt tkug",
+        user: "your email", 
+        pass: "your password",
 
       },
     });
 
     let mailOptions = {
-        from: "dinkyjani27@gmail.com", 
-        to: "jdinky.netclues@gmail.com", 
+        from: "from email", 
+        to: "to email", 
       subject: 'PDF Attachment',
       text: 'Please find the attached PDF.',
       attachments: [
