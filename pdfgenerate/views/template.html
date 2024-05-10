@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #ffe77b;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 80px;
+            width: 80px;
+            margin-right: 20px;
+        }
+
+        .invoice-header {
+            color: brown;
+            font-weight: 900;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .invoice-header p {
+            margin: 0;
+        }
+
+        .invoice-info {
+            margin-top: 10px;
+        }
+
+        .invoice-info h1 {
+            color: green;
+            font-size: 36px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+        .invoice-number {
+            font-size: 24px;
+            font-weight: 600;
+            color: green;
+            margin: 0;
+        }
+
+        .invoice-details {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .invoice-details .left,
+        .invoice-details .right {
+            flex: 1;
+            padding: 0 10px;
+        }
+
+        .invoice-details .right {
+            text-align: right;
+        }
+
+        .customer-info {
+            margin-top: 30px;
+        }
+
+        .customer-info h3 {
+            color: brown;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .customer-info p {
+            margin: 5px 0;
+        }
+
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        .product-table th,
+        .product-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .product-table th {
+            background-color: #ffe77b;
+            font-weight: 700;
+        }
+
+        .subtotal,
+        .tax,
+        .grand-total {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .subtotal th,
+        .subtotal td,
+        .tax th,
+        .tax td,
+        .grand-total th,
+        .grand-total td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: right;
+        }
+
+        .subtotal th,
+        .tax th,
+        .grand-total th {
+            background-color: #f6f6f6;
+            font-size: 20px;
+            font-weight: 700;
+            color: darkred;
+        }
+
+        .subtotal td,
+        .tax td,
+        .grand-total td {
+            background-color: #f6f6f6;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .notice {
+            margin-top: 20px;
+        }
+
+        .notice th {
+            font-size: 20px;
+            font-weight: 700;
+            color: red;
+            background-color: #f6f6f6;
+            text-align: left;
+        }
+
+        .notice td {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000;
+            background-color: #f6f6f6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Replace the src attribute with your desired image URL -->
+            <!-- <img class="logo" src="https://example.com/path/to/your/image.jpg" alt="Logo"> -->
+            <div class="company-info">
+                <h2 class="invoice-header">Online Store</h2>
+                <p>Venus Grounds, Stratum <br>
+                    <a href="#" style="color: brown;">janistores</a> | <a href="mailto:jdinky.netclues@gmail.com"
+                        style="color: brown;">hello@dinky jani</a> +91 6969545421
+                </p>
+            </div>
+        </div>
+        <div class="invoice-info">
+            <h1>INVOICE</h1>
+            <h4 class="invoice-number">#1</h4>
+        </div>
+        <div class="invoice-details">
+            <!-- <div class="left">
+                <h3>Invoice To:</h3>
+                <p>Dinky Jani</p>
+                <p>CEO</p>
+             <p>Bolen Tex .Inc</p> -->
+            <!-- </div> -->
+            <div class="right">
+                <h3>Invoice To:</h3>
+                <p>Dinky Jani</p>
+                <p>CEO</p>
+                <p>+91 8849530547</p>
+                <p>jdinky.netclues@gmail.com</p>
+                <h4>Date: 10 May 2024</h4>
+                <h4>INVOICE NO: 1212</h4>
+            </div>
+        </div>
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Unit</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products.prodlist}}
+                <tr>
+                    <td>
+                        <h5>{{this.name}}</h5>
+                        <p>{{this.description}}</p>
+                    </td>
+                    <td>{{this.unit}}</td>
+                    <td>{{this.quantity}}</td>
+                    <td>Rs.{{this.price}}</td>
+                    <td>Rs.{{this.total}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <table class="subtotal">
+            <tr>
+                <th>Sub Total</th>
+                <td>Rs.{{products.subtotal}}</td>
+            </tr>
+        </table>
+        <table class="tax">
+            <tr>
+                <th>Tax</th>
+                <td>Rs.{{products.tax}}</td>
+            </tr>
+        </table>
+        <table class="grand-total">
+            <tr>
+                <th>Grand Total</th>
+                <td>Rs.{{products.gtotal}}</td>
+            </tr>
+        </table>
+        <table class="notice">
+            <tr>
+                <th>Notice:</th>
+            </tr>
+            <tr>
+                <td>A finance charge of 1.5% will be made on unpaid balances after 30 days.</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
