@@ -74,10 +74,8 @@ app.post('/upload', upload.single('htmlFile'), async (req, res) => {
 
     const pdfBuffer = await page.pdf({ format: 'A4' });
 
-    // Send email with the PDF attachment
     await sendEmail(pdfBuffer);
 
-    // Send the PDF as response (optional)
     res.set('Content-Type', 'application/pdf');
     res.send(pdfBuffer);
 
@@ -112,7 +110,6 @@ async function sendEmail(pdfBuffer) {
       ],
     };
 
-    // Send mail with defined transport object
     let info = await transporter.sendMail(mailOptions);
     console.log('Email sent: ' + info.response);
   } catch (error) {
